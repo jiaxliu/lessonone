@@ -82,8 +82,8 @@
         var oTableInit = new Object();
         //初始化Table
         oTableInit.Init = function () {
-            $('#tb_departments').bootstrapTable({
-                url: '/user/list',         //请求后台的URL（*）
+            $('#tb_users').bootstrapTable({
+                url: '/user/list',                  //请求后台的URL（*）
                 method: 'get',                      //请求方式（*）
                 toolbar: '#toolbar',                //工具按钮用哪个容器
                 striped: true,                      //是否显示行间隔色
@@ -116,10 +116,10 @@
                     field: 'userName',
                     title: 'USERNAME'
                 }, {
-                    field: 'Age',
+                    field: 'userAge',
                     title: 'AGE'
                 }, {
-                    field: 'Email',
+                    field: 'userEmail',
                     title: 'EMAIL'
                 }, ]
             });
@@ -177,20 +177,7 @@
         showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
         detailView: false,                   //是否显示父子表
-        rowStyle: function (row, index) {
-            //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
-            var strclass = "";
-            if (row.age > 40) {
-                strclass = 'success';//还有一个active
-            }
-            else if (row.age <20) {
-                strclass = 'danger';
-            }
-            else {
-                return {};
-            }
-            return { classes: strclass }
-        },
+
         columns: [{
             checkbox: true
         }, {
@@ -205,7 +192,22 @@
         }, {
             field: 'userEmail',
             title: 'EMAIL'
-        }, ]
+        }, ],
+
+        rowStyle: function (row, index) {
+            //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
+            var strclass = "";
+            if (row.userAge >= 40) {
+                strclass = 'success';//还有一个active
+            }
+            else if (row.USERAGE <= 20) {
+                strclass = 'danger';
+            }
+            else {
+                return {};
+            }
+            return { classes: strclass }
+        }
     });
 
 

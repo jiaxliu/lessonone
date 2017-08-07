@@ -25,4 +25,8 @@ public class IndexController {
     public String index(){
         return "index";
     }
+    @RequestMapping(value = "/list-view", method = RequestMethod.GET)
+    public String listView(){return "list";}
+
+
 }

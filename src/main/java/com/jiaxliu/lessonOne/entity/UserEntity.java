@@ -30,7 +30,7 @@ public class UserEntity implements Serializable{
     private Long id;
 
    @Column(name = "t_name")
-    private String name;
+    private String userName;
 
    @Column(name = "t_age")
     private int age;
@@ -39,7 +39,7 @@ public class UserEntity implements Serializable{
     private String email;
 
    @Column(name = "t_pwd")
-   private String userPwd;
+    private String userPassword;
 
     public Long getId() {
         return id;
@@ -47,14 +47,6 @@ public class UserEntity implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
@@ -73,11 +65,19 @@ public class UserEntity implements Serializable{
         this.email = email;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 }

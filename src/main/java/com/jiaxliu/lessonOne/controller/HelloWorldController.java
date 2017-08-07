@@ -15,6 +15,6 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
-       return "Hello World!";
+       return "index";
     }
 }

@@ -51,6 +51,9 @@ public class UserController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<UserEntity> list(){
+
         return userJPA.findAll();
     }
+
+
 }

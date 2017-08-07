@@ -12,6 +12,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * =====================================================
@@ -35,7 +37,7 @@ public class SignInController {
     UserJPA userJPA;
 
     @RequestMapping(value = "/sign-in")
-    public String signIn(UserEntity user, HttpServletRequest request)
+    public ModelAndView signIn(UserEntity user, HttpServletRequest request)
     {
         String result ="登录成功";
 
@@ -44,7 +46,9 @@ public class SignInController {
         UserEntity userEntity =  userJPA.findOne(new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                criteriaQuery.where(criteriaBuilder.equal(root.get("name"),user.getName()));
+                criteriaQuery.where(criteriaBuilder.equal(root.get("userName"),user.getUserName()));
+                System.out.println("--root.get(\"name\")--"+root.get("userName"));
+
                 return null;
             }
         });
@@ -54,7 +58,7 @@ public class SignInController {
             result = "用户不存在,登录失败!";
         }
         //密码错误
-        else if (!userEntity.getUserPwd().equals(user.getUserPwd())){
+        else if (!userEntity.getUserPassword().equals(user.getUserPassword())){
             flag = false;
             result = "用户密码不相符,登录失败";
         }
@@ -63,7 +67,8 @@ public class SignInController {
             //将用户写入session
             request.getSession().setAttribute("_session_user",userEntity);
         }
-        return result;
+
+        return new ModelAndView(new RedirectView("/user/list"));
 
     }
 }

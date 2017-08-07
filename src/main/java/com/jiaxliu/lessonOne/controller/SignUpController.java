@@ -35,10 +35,10 @@ public class SignUpController {
     UserJPA userJPA;
 
     @RequestMapping(value = "/sign-up")
-    public boolean signUp(UserEntity user) {
+    public String signUp(UserEntity user) {
         boolean flag = true;
         //根据用户名查询用户是否存在
-        UserEntity userEntity = userJPA.findOne(new Specification<UserEntity>() {
+        /*UserEntity userEntity = userJPA.findOne(new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 criteriaQuery.where(criteriaBuilder.equal(root.get("name"), user.getName()));
@@ -53,7 +53,11 @@ public class SignUpController {
             return true;
 
         }else
-            return false;
+        */
+
+
+
+            return null;
 
     }
 

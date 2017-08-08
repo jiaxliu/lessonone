@@ -25,33 +25,29 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object o) throws Exception{
         //登录不做拦截
-        if(request.getRequestURI().equals("/user/sign-in")||request.getRequestURI().equals("/user/sign-in-view")){
-           System.out.println("--SIGN-IN--"+request.getRequestURI());
-           //跳转到用户列表
-           // response.sendRedirect("/user/userList");
+      /**  if(request.getRequestURI().equals("/user/sign-in")||request.getRequestURI().equals("/user/sign-in-view")){
             return true;
         }
-        else if (request.getRequestURI().equals("/user/sign-up")){
+        else */if (request.getRequestURI().equals("/user/sign-up")){
             response.sendRedirect("/user/sign-up-view");
-            System.out.println("--SIGN-UP--"+request.getRequestURI());
             return true;
         }
         else if (request.getRequestURI().equals("/index")){
             response.sendRedirect("/user/index");
-            System.out.println("--SIGN-INDEX--"+request.getRequestURI());
             return true;
-        }else if (request.getRequestURI().equals("/user/list")){
+        }
+        else if (request.getRequestURI().equals("/user/list")){
             response.sendRedirect("/user/list-view");
             return true;
         }
 
-
+/**
         //验证session是否存在
          Object obj = request.getSession().getAttribute("_session_user");
         if(obj==null){
-            response.sendRedirect("/user/sign-in-view");
+                response.sendRedirect("/user/sign-in-view");
             return false;
-        }
+        }*/
 
         return true;
     }

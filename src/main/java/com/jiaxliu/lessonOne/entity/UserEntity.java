@@ -41,10 +41,22 @@ public class UserEntity implements Serializable{
    @Column(name = "t_pwd")
     private String userPassword;
 
+   @Column(name= "firstname")
+    private String userFirstName;
+
+   @Column(name= "lastname")
+    private String userLastName;
+
+   @Column(name= "gender")
+    private String userGender;
+
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
 
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public void setId(Long id) {
         this.id = id;
     }
@@ -79,5 +91,29 @@ public class UserEntity implements Serializable{
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
     }
 }

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!--  layout:decorator="base/layout"> -->
+<!-- layout文件路径-->
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,8 +14,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
     <!-- Baidu frontawesome -->
     <link rel="stylesheet" href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.css" />
-    <!-- templatemo_style
-    <link href="../../static/css/templatemo_style.css" rel="stylesheet" type="text/css"/>-->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
@@ -30,28 +32,28 @@
 <h1 class="margin-bottom-15">Create Account</h1>
 <div class="container">
     <div class="col-md-12">
-        <form class="form-horizontal templatemo-create-account templatemo-container" role="FORM" action="user/sign-up" method="GET">
+        <form class="form-horizontal templatemo-create-account templatemo-container"  th:action="@{/user/sign-up}" th:method="POST">
             <div class="form-inner">
                 <div class="form-group">
                     <div class="col-md-6">
-                        <label for="first_name" class="control-label">First Name</label>
-                        <input type="text" class="form-control" id="first_name" placeholder=""/>
+                        <label  class="control-label">First Name</label>
+                        <input type="text" class="form-control" name="first_name" placeholder=""/>
                     </div>
                     <div class="col-md-6">
-                        <label for="last_name" class="control-label">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" placeholder=""/>
+                        <label  class="control-label">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder=""/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label for="username" class="control-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder=""/>
+                        <label  class="control-label">Email</label>
+                        <input type="email" class="form-control" name="userEmail" placeholder=""/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                        <label for="username" class="control-label">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder=""/>
+                        <label  class="control-label">Username</label>
+                        <input type="text" class="form-control" name="userName" placeholder=""/>
                     </div>
                     <div class="col-md-6 templatemo-radio-group">
                         <label class="radio-inline">
@@ -64,12 +66,12 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                        <label for="password" class="control-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder=""/>
+                        <label  class="control-label">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder=""/>
                     </div>
                     <div class="col-md-6">
-                        <label for="password" class="control-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password_confirm" placeholder=""/>
+                        <label  class="control-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirm" placeholder=""/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -79,8 +81,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <input type="submit" value="Create account" class="btn btn-info"/>
-                        <a href="login-1.html" class="pull-right">Sign In</a>
+                        <input type="submit" value="Create account" class="btn btn-success"/>
                     </div>
                 </div>
             </div>

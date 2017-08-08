@@ -1,5 +1,7 @@
 package com.jiaxliu.lessonOne.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jiaxliu.lessonOne.entity.UserEntity;
 import com.jiaxliu.lessonOne.jpa.UserJPA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -37,8 +41,8 @@ public class SignInController {
     UserJPA userJPA;
 
     @RequestMapping(value = "/sign-in")
-    public ModelAndView signIn(UserEntity user, HttpServletRequest request)
-    {
+    public String signIn(UserEntity user)
+            throws Exception     {
         String result ="登录成功";
 
         boolean flag = true;
@@ -47,8 +51,6 @@ public class SignInController {
             @Override
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 criteriaQuery.where(criteriaBuilder.equal(root.get("userName"),user.getUserName()));
-                System.out.println("--root.get(\"name\")--"+root.get("userName"));
-
                 return null;
             }
         });
@@ -65,10 +67,11 @@ public class SignInController {
         //登录成功
         if(flag){
             //将用户写入session
-            request.getSession().setAttribute("_session_user",userEntity);
+           // request.getSession().setAttribute("_session_user",userEntity);
         }
 
-        return new ModelAndView(new RedirectView("/user/list"));
+        return result;
+
 
     }
 }

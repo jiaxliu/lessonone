@@ -2,6 +2,7 @@ package com.jiaxliu.lessonOne.controller;
 
 import com.jiaxliu.lessonOne.entity.UserEntity;
 import com.jiaxliu.lessonOne.jpa.UserJPA;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,33 +33,41 @@ import javax.servlet.http.HttpServletRequest;
 public class SignUpController {
 
     @Autowired
-    UserJPA userJPA;
-
+    UserJPA userJPA =null;
     @RequestMapping(value = "/sign-up")
-    public String signUp(UserEntity user) {
-        boolean flag = true;
-        //根据用户名查询用户是否存在
-        /*UserEntity userEntity = userJPA.findOne(new Specification<UserEntity>() {
-            @Override
-            public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                criteriaQuery.where(criteriaBuilder.equal(root.get("name"), user.getName()));
-                return null;
-            }
-        });
-        //用户名不存在
-        if (userEntity == null){
+    public String signUp(HttpServletRequest request, UserEntity userEntity) {
 
-            userJPA.save(user);
+        String result="注册成功!";
 
-            return true;
+        String username = request.getParameter("userName");
+        String userFirstName = request.getParameter("first_name");
+        String userLastName = request.getParameter("last_name");
+        String gender = request.getParameter("option1");
+        String userEmail = request.getParameter("userEmail");
+        String password = request.getParameter("password");
+        String password_confirm = request.getParameter("password_confirm");
 
-        }else
-        */
+        userEntity.setId(1234123l);
+        userEntity.setUserFirstName(userFirstName);
+        userEntity.setUserLastName(userLastName);
+        userEntity.setUserName(username);
+        userEntity.setUserGender("M");
+        userEntity.setUserGender(gender);
+        userEntity.setEmail(userEmail);
+        userEntity.setUserPassword(password);
+
+    //    if (!password.equals(password_confirm))
+       //     return "密码不一致!";
 
 
 
-            return null;
+            userJPA.save(userEntity);
 
-    }
+        System.out.println("---"+userFirstName+"---"+userLastName+
+                "---"+username+
+                "---"+userEmail+
+                "---"+gender);
 
-}
+        return result;
+
+}}

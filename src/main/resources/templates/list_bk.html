@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<!--  layout:decorator="base/layout"> -->
+<!-- layout文件路径-->
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>list-Page</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="ANONYMOUS"/>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="ANONYMOUS"/>
+<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet"/>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"/>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="ANONYMOUS"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="ANONYMOUS"></script>
+<script src="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/extensions/editable/bootstrap-table-editable.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<style></style>
+</head>
+<body onload="InitMainTable()">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Query
+    </div>
+    <div class="panel-body form-group" style="margin-bottom:0px;">
+        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">Username：</label>
+        <div class="col-sm-2">
+            <input type="TEXT" class="form-control" name="userName" id="search_name"/>
+        </div>
+        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">Email：</label>
+        <div class="col-sm-2">
+            <input type="email" class="form-control" name="userEmail" id="search_tel"/>
+        </div>
+        <div class="col-sm-1 col-sm-offset-4">
+            <button class="btn btn-primary" id="search_btn">Go</button>
+        </div>
+    </div>
+    <div>
+        <table data-toggle="table" id="tb_lessonone" data-url="/user/getData" >
+            <thead>
+            <tr>
+                <th data-field="id">USERID</th>
+                <th data-field="userName">USERNAME</th>
+                <th data-field="userFirstName">FIRSTNAME</th>
+                <th data-field="userLastName">LASTNAME</th>
+                <th data-field="age">AGE</th>
+                <th data-field="email">EMAIL</th>
+            </tr>
+            </thead>
+        </table>
+
+
+
+        <table id="table"></table>
+
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    $('#table').bootstrapTable({
+        url: '/user/getData',
+        columns: [{
+            checkbox: true,
+            visible: true                  //是否显示复选框
+        }, {
+            field: 'userName',
+            title: 'USERNAME',
+            sortable: true
+        },  {
+            field: 'userFirstName',
+            title: 'FIRSTNAME',
+            sortable: true
+        },  {
+            field: 'userLastName',
+            title: 'LASTNAME',
+            sortable: true
+        },  {
+            field: 'age',
+            title: 'AGE',
+            sortable: true
+
+
+        },  {
+            field: 'userPassword',
+            title: 'PASSWORD',
+            sortable: true
+
+        },  {
+            field: 'email',
+            title: 'EMAIL',
+            sortable: true,
+            formatter: emailFormatter
+
+        },  {
+            field:'id',
+            title: '操作',
+            width: 120,
+            align: 'center',
+            valign: 'middle',
+            formatter: actionFormatter
+        }, ],
+    });
+
+</script>
+</html>

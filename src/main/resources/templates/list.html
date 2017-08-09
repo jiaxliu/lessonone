@@ -8,61 +8,76 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>list-Page</title>
-<!-- Latest compiled and minified CSS -->
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="ANONYMOUS"/>
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
       integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="ANONYMOUS"/>
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet"/>
-
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"/>
-<script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="ANONYMOUS"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="ANONYMOUS"></script>
-<script src="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-<!-- Latest compiled and minified Locales -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/extensions/editable/bootstrap-table-editable.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <!--
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="ANONYMOUS"></script>
+     <script src="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
 
-<style></style>
+
+         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+
+         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>-->
+<style>
+    /* Table Head */
+    #table-1 thead th {
+        background-color: rgb(81, 130, 187);
+        color: #fff;
+        border-bottom-width: 0;
+    }
+
+    /* Column Style */
+    #table-1 td {
+        color: #000;
+    }
+    /* Heading and Column Style */
+    #table-1 tr, #table-1 th {
+      /*  border-width: 1px;
+        border-style: solid;
+        border-color: rgb(81, 130, 187);
+        */
+    }
+
+    /* Padding and font style */
+    #table-1 td, #table-1 th {
+        padding-bottom: 8px;
+        font-size: 16px;
+        font-family: Microsoft Yahei;
+        font-weight: normal;
+    }
+
+</style>
 </head>
-<body onload="InitMainTable()">
+<body>
 <div class="panel panel-default">
     <div class="panel-heading">
-        Query
+        <h3>USER LIST</h3>
     </div>
     <div class="panel-body form-group" style="margin-bottom:0px;">
-        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">Username：</label>
-        <div class="col-sm-2">
-            <input type="TEXT" class="form-control" name="userName" id="search_name"/>
-        </div>
-        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">Email：</label>
-        <div class="col-sm-2">
-            <input type="email" class="form-control" name="userEmail" id="search_tel"/>
-        </div>
-        <div class="col-sm-1 col-sm-offset-4">
-            <button class="btn btn-primary" id="search_btn">Go</button>
-        </div>
-    </div>
-    <div>
-        <table data-toggle="table" id="tb_lessonone" >
+
+        <table data-toggle="table"
+                   id="table-1" class="table table-hover"
+                   data-row-style="rowStyle"
+                   data-search="true"
+                   data-show-refresh="true"
+                   data-show-toggle="true"
+                   data-show-columns="true"
+                   data-toolbar="#toolbar">
             <thead>
-            <tr>
-                <th data-field="userId">USERID</th>
-                <th data-field="userName">USERNAME</th>
-                <th data-field="userAge">AGE</th>
-                <th data-field="userEmail">EMAIL</th>
-            </tr>
+
             </thead>
         </table>
     </div>
@@ -71,88 +86,157 @@
 
 <script type="text/javascript">
 
-    var $table;
-    //初始化bootstrap-table的内容
-    function InitMainTable () {
-        //记录页面bootstrap-table全局变量$table，方便应用
-        var queryUrl = '/user/list'
-        $table = $('tb_lessonone').bootstrapTable({
-                url: queryUrl,                      //请求后台的URL（*）
-                method: 'GET',                      //请求方式（*）
-                //toolbar: '#toolbar',              //工具按钮用哪个容器
-                striped: true,                      //是否显示行间隔色
-                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-                pagination: true,                   //是否显示分页（*）
-                sortable: true,                     //是否启用排序
-                sortOrder: "asc",                   //排序方式
-                sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
-                pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-               // pageSize: rows,                     //每页的记录行数（*）
-                pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-                search: false,                      //是否显示表格搜索
-                strictSearch: true,
-                showColumns: true,                  //是否显示所有的列（选择显示的列）
-                showRefresh: true,                  //是否显示刷新按钮
-                minimumCountColumns: 2,             //最少允许的列数
-                clickToSelect: true,                //是否启用点击选中行
-                //height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-                uniqueId: "userId",                     //每一行的唯一标识，一般为主键列
-                showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
-                cardView: false,                    //是否显示详细视图
-                detailView: false,                  //是否显示父子表
-                //得到查询的参数
-                queryParams : function (params) {
-                    //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-                    var temp = {
-                        rows: params.limit,                         //页面大小
-                        page: (params.offset / params.limit) + 1,   //页码
-                        sort: params.sort,      //排序列名
-                        sortOrder: params.order //排位命令（desc，asc）
-                    };
-                    return temp;
-                },
+
+    $(function() {
+        //根据窗口调整表格高度
+         $(window).resize(function() {
+            $('#table-1').bootstrapTable('resetView', {
+                height: tableHeight()
+            })
+        })
+
+        $('#table-1').bootstrapTable({
+            url: "/user/getData",//数据源
+            dataField: "rows",//服务端返回数据键值 就是说记录放的键值是rows，分页时使用总记录数的键值为total
+            height: tableHeight(),//高度调整
+            search: true,//是否搜索
+            pagination: true,//是否分页
+            pageSize: 20,//单页记录数
+            pageList: [20,40,60,80,100,120],//分页步进值
+            sidePagination: "client",//服务端分页
+            contentType: "application/x-www-form-urlencoded",//请求数据内容格式 默认是 application/json 自己根据格式自行服务端处理
+            dataType: "json",//期待返回数据类型
+            method: "GET",//请求方式
+            searchAlign: "left",//查询框对齐方式
+            queryParamsType: "limit",//查询参数组织方式
+            queryParams: function getParams(params) {
+                //params obj
+                params.other = "otherInfo";
+                return params;
+            },
+            searchOnEnterKey: false,//回车搜索
+            showRefresh: true,//刷新按钮
+            showColumns: true,//列选择按钮
+            showToggle:true,     //是否显示详细视图和列表视图的切换按钮
+            iconSize: 'outline',
+            icons: {
+                refresh: 'glyphicon-repeat',
+                toggle: 'glyphicon-list-alt',
+                columns: 'glyphicon-list'
+            },
+            buttonsAlign: "left",//按钮对齐方式
+          //  toolbar: "#toolbar",//指定工具栏
+            toolbarAlign: "left",//工具栏对齐方式
             columns: [{
                 checkbox: true,
                 visible: true                  //是否显示复选框
+            },  {
+                field:'id',
+                title: '<h4><span class="label label-default">ID</span></h4>',
+                align: 'center',
+                valign: 'middle',
+                sortable: true
             }, {
                 field: 'userName',
                 title: 'USERNAME',
                 sortable: true
             },  {
-                field: 'userPassword',
-                title: 'PASSWORD',
+                field: 'email',
+                title: 'EMAIL',
+                sortable: true
+                //,formatter: emailFormatter
+            },  {
+                field: 'userFirstName',
+                title: 'FIRSTNAME',
+                sortable: true
+            },  {
+                field: 'userLastName',
+                title: 'LASTNAME',
+                sortable: true
+            },  {
+                field: 'age',
+                title: 'AGE',
                 sortable: true
 
             },  {
-                field: 'userEmail',
-                title: 'EMAIL',
-                sortable: true,
-                formatter: emailFormatter
-            },{
-                field: 'userAge',
-                title: 'AGE'
-            },  {
-                field:'ID',
-                title: '操作',
-                width: 120,
+                field:'Oper',
+                title: 'Operation',
                 align: 'center',
                 valign: 'middle',
+                sortable: true,
                 formatter: actionFormatter
+
             }, ],
-            onLoadSuccess: function () {
-            },
-            onLoadError: function () {
-                showTips("数据加载失败！");
-            },
-            onDblClickRow: function (row, $element) {
-                //var id = row.ID;
-               // EditViewById(id, 'view');
-            },
+
+            onClickRow: function(row, $element) {
+                //$element是当前tr的jquery对象
+                $element.css("background-color", "#eee");
+            },//单击row事件
+            rowStyle: function (row, index) {
+                if (index % 2 === 0) {
+                    return {
+                        classes: 'success'
+                    };
+                }
+                else if (index % 2=== 1) {
+                    return {
+
+                        /*  classes: 'success'*/
+                    };
+                }
 
 
+                return {};
+            }
 
-        });
-    };
+    });
+
+
+    }
+            )
+
+    function tableHeight() {
+        return $(window).height() - 50;
+    }
+
+    //value: 所在collumn的当前显示值，
+    //row:整个行的数据 ，对象化，可通过.获取
+    //表格-操作 - 格式化
+    function actionFormatter(value, row, index) {
+        return '<!-- Single button -->\n' +
+        '<div class="btn-group">\n' +
+        '  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+        '    Operation <span class="caret"></span>\n' +
+        '  </button>\n' +
+        '  <ul class="dropdown-menu">\n' +
+        '    <li><a href="#">Modify</a></li>\n' +
+        '    <li><a href="#">Remove</a></li>\n' +
+        '    <li role="separator" class="divider"></li>\n' +
+        '    <li><a href="#">Separated link</a></li>\n' +
+        '  </ul>\n' +
+        '</div>';
+    }
+
+
+    window.actionEvents = {
+        'click .mod': function(e, value, row, index) {
+            //修改操作
+        },
+        'click .delete' : function(e, value, row, index) {
+            //删除操作
+        }
+    }
+    function emailFormatter() {}
+
+    $("#table-1").bootstrapTable('refreshOptions', {
+        sidePagination: 'client'  //改为客户端分页
+    });
 
 </script>
+
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap-table.js"></script>
+<!-- put your locale files after bootstrap-table.js -->
+<!--<script src="/static/js/bootstrap-table-zh-CN.js"></script>-->
 </html>

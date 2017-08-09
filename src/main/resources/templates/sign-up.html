@@ -25,6 +25,9 @@
         .margin-bottom-15{
             margin-bottom: 15px;
         }
+
+
+
     </style>
 </head>
 
@@ -79,6 +82,22 @@
                         <label><input type="checkbox"/>I agree to the <a href="javascript:;" data-toggle="modal" data-target="#templatemo_modal">Terms of Service</a> and <a href="#">Privacy Policy.</a></label>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div id="captcha-box"></div>
+
+
+
+                    <div class="myform">
+                        <input type="hidden" name="geetest_challenge" value="xxx"/>
+                        <input type="hidden" name="geetest_validate" value="xxx"/>
+                        <input type="hidden" name="geetest_seccode" value="xxx"/>
+                    </div>
+
+
+
+                </div>
+
                 <div class="form-group">
                     <div class="col-md-12">
                         <input type="submit" value="Create account" class="btn btn-success"/>
@@ -109,4 +128,45 @@
 </div>
 
 </body>
+
+<script>
+
+    initGeetest({
+        // 省略配置参数
+    }, function (captchaObj) {
+        // 现在可以调用验证实例 captchaObj 的方法了
+
+        captchaObj('#myform');
+    });
+
+    initGeetest({
+        // 以下配置参数来自服务端 SDK
+        gt: data.gt,
+        challenge: data.challenge,
+        offline: !data.success,
+        new_captcha: data.new_captcha
+    }, function (captchaObj) {
+        // 这里可以调用验证实例 captchaObj 的实例方法
+    })
+
+    initGeetest({
+        // 省略必须的配置参数
+        width: '100%'
+    }, handler);
+
+    initGeetest({
+        // 省略必须的配置参数
+        width: '20rem'
+    });
+
+    var captchaBox = document.getElementById('#captcha-box');
+    initGeetest({
+        // 省略配置参数
+    }, function (captchaObj) {
+        captchaObj.appendTo(captchaBox);
+        // 省略其他方法的调用
+    });
+
+
+</script>
 </html>

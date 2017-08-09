@@ -12,7 +12,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * =====================================================
@@ -34,6 +38,12 @@ public class SignUpController {
 
     @Autowired
     UserJPA userJPA =null;
+
+
+    private static final String geetest_id = "你的公钥";
+    private static final String geetest_key = "你的私钥";
+
+
     @RequestMapping(value = "/sign-up")
     public String signUp(HttpServletRequest request, UserEntity userEntity) {
 
@@ -47,12 +57,10 @@ public class SignUpController {
         String password = request.getParameter("password");
         String password_confirm = request.getParameter("password_confirm");
 
-        userEntity.setId(1234123l);
         userEntity.setUserFirstName(userFirstName);
         userEntity.setUserLastName(userLastName);
         userEntity.setUserName(username);
         userEntity.setUserGender("M");
-        userEntity.setUserGender(gender);
         userEntity.setEmail(userEmail);
         userEntity.setUserPassword(password);
 
@@ -69,5 +77,5 @@ public class SignUpController {
                 "---"+gender);
 
         return result;
-
-}}
+    }
+}

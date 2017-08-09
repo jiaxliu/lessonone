@@ -21,15 +21,15 @@ import java.io.Serializable;
  * =====================================================
  */
 @Entity
-@Table(name = "tb_lessonone")
+@Table(name = "tb_users")
 public class UserEntity implements Serializable{
 
    @Id
-   @GeneratedValue
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "t_id")
     private Long id;
 
-   @Column(name = "t_name")
+   @Column(name = "t_username")
     private String userName;
 
    @Column(name = "t_age")
@@ -38,25 +38,23 @@ public class UserEntity implements Serializable{
    @Column(name = "t_email")
     private String email;
 
-   @Column(name = "t_pwd")
+   @Column(name = "t_password")
     private String userPassword;
 
-   @Column(name= "firstname")
+   @Column(name= "t_firstname")
     private String userFirstName;
 
-   @Column(name= "lastname")
+   @Column(name= "t_lastname")
     private String userLastName;
 
-   @Column(name= "gender")
+   @Column(name= "t_gender")
     private String userGender;
 
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public void setId(Long id) {
         this.id = id;
     }

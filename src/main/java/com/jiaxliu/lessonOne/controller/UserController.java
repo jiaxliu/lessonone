@@ -51,7 +51,7 @@ public class UserController {
      * 查询用户 的 方法
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/getData", method = RequestMethod.GET)
     public List<UserEntity> list(){
 
         return userJPA.findAll();

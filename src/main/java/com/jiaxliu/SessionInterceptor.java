@@ -47,8 +47,8 @@ public class SessionInterceptor implements HandlerInterceptor {
         if(obj==null){
                 response.sendRedirect("/user/sign-in-view");
             return false;
-        }*/
-
+        }
+*/
         return true;
     }
 

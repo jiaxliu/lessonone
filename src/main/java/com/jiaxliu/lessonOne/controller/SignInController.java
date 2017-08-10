@@ -1,35 +1,19 @@
 package com.jiaxliu.lessonOne.controller;
 
-import com.alibaba.druid.util.StringUtils;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.jiaxliu.lessonOne.entity.UserEntity;
 import com.jiaxliu.lessonOne.jpa.UserJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import java.awt.image.BufferedImage;
-import java.io.OutputStream.*;
-import java.util.Date;
-import java.util.Map;
-
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
-import com.jiaxliu.lessonOne.common.ImageCode;
 /**
  * =====================================================
  *
@@ -51,10 +35,8 @@ public class SignInController {
     @Autowired
     UserJPA userJPA;
 
-
-
     @RequestMapping(value = "/sign-in")
-    public String signIn(UserEntity user,HttpServletRequest request/*,String kachepa, HttpServletResponse response*/)
+    public String signIn(UserEntity user, HttpServletRequest request, HttpServletResponse response)
             throws Exception     {
         String result ="登录成功";
 
@@ -67,14 +49,13 @@ public class SignInController {
                 return null;
             }
         });
-
-
-
+        System.out.println("----"+userEntity.getUserPassword()+"---"+user.getUserPassword());
         //用户名不存在
         if(userEntity==null){
             flag = false;
             result = "用户不存在,登录失败!";
         }
+
         //密码错误
         else if (!userEntity.getUserPassword().equals(user.getUserPassword())){
             flag = false;
@@ -83,11 +64,10 @@ public class SignInController {
         //登录成功
         if(flag){
             //将用户写入session
-           // request.getSession().setAttribute("_session_user",userEntity);
+         ///  request.getSession().setAttribute("_session_user",userEntity);
         }
 
-
-
+        response.sendRedirect("/user/list-view");
         return result;
 
 

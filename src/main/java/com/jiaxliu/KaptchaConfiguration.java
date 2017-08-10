@@ -21,7 +21,7 @@ import java.util.Properties;
  * =====================================================
  */
 
-@Configuration
+//@Configuration
 public class KaptchaConfiguration {
 
 

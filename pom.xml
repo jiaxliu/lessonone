@@ -35,13 +35,20 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
             <!--注释 provided 可以解决无法启动的问题 -->
 			<!--<scope>provided</scope>  -->
-
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <!--<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>-->
 
         <!-- springboot tomcat 支持 jsp-->
         <dependency>
@@ -97,6 +104,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
+
 		<dependency>
 		          <groupId>com.github.axet</groupId>
 		          <artifactId>kaptcha</artifactId>

@@ -1,9 +1,6 @@
 package com.jiaxliu.lessonOne.entity;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -32,9 +29,6 @@ public class UserEntity implements Serializable{
    @Column(name = "t_username")
     private String userName;
 
-   @Column(name = "t_age")
-    private int age;
-
    @Column(name = "t_email")
     private String email;
 
@@ -50,21 +44,12 @@ public class UserEntity implements Serializable{
    @Column(name= "t_gender")
     private String userGender;
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getEmail() {

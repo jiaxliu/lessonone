@@ -62,11 +62,10 @@ public class MyWebAppConfiguration extends WebMvcConfigurerAdapter {
 
     @Value("${kaptcha.background.clear.to}")
     private String to;
-
+/**
     @Bean
     public ServletRegistrationBean servletRegistrationBean() throws ServletException{
         ServletRegistrationBean servlet = new ServletRegistrationBean(new KaptchaServlet(),"/images/kaptcha.jpg");
-        servlet.addInitParameter("kaptcha.border", "no"/*kborder*/);//无边框
         servlet.addInitParameter("kaptcha.session.key", skey);//session key
         servlet.addInitParameter("kaptcha.textproducer.font.color", fcolor);
         servlet.addInitParameter("kaptcha.textproducer.font.size", fsize);
@@ -80,7 +79,7 @@ public class MyWebAppConfiguration extends WebMvcConfigurerAdapter {
         servlet.addInitParameter("kaptcha.background.clear.to", to);
         return servlet;
     }
-
+*/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {

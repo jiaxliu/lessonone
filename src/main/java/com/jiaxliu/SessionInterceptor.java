@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  * @Author jiaxliu [ jiaxliu@outlook.com ]
  * @GitHub https://github.com/jiaxliu
  * @Date Aug 8/5/2017 16:45
- * <p>
- * <p>
  * =====================================================
  */
 
@@ -25,10 +23,10 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object o) throws Exception{
         //登录不做拦截
-      /**  if(request.getRequestURI().equals("/user/sign-in")||request.getRequestURI().equals("/user/sign-in-view")){
+       if(request.getRequestURI().equals("/user/sign-in")||request.getRequestURI().equals("/user/sign-in-view")){
             return true;
         }
-        else */if (request.getRequestURI().equals("/user/sign-up")){
+        else if (request.getRequestURI().equals("/user/sign-up")){
             response.sendRedirect("/user/sign-up-view");
             return true;
         }

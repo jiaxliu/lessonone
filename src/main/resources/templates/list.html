@@ -16,21 +16,11 @@
       integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="ANONYMOUS"/>
 <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.css" rel="stylesheet"/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css"/>
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <!--
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="ANONYMOUS"></script>
-     <script src="//rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js"></script>
-
-
-         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-
-
-         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>-->
 <style>
     /* Table Head */
     #table-1 thead th {
@@ -67,17 +57,8 @@
         <h3>USER LIST</h3>
     </div>
     <div class="panel-body form-group" style="margin-bottom:0px;">
-
-        <table data-toggle="table"
-                   id="table-1" class="table table-hover"
-                   data-row-style="rowStyle"
-                   data-search="true"
-                   data-show-refresh="true"
-                   data-show-toggle="true"
-                   data-show-columns="true"
-                   data-toolbar="#toolbar">
+        <table data-toggle="table" id="table-1"  data-row-style="rowStyle" class="table table-hover">
             <thead>
-
             </thead>
         </table>
     </div>
@@ -85,8 +66,6 @@
 </body>
 
 <script type="text/javascript">
-
-
     $(function() {
         //根据窗口调整表格高度
          $(window).resize(function() {
@@ -94,7 +73,6 @@
                 height: tableHeight()
             })
         })
-
         $('#table-1').bootstrapTable({
             url: "/user/getData",//数据源
             dataField: "rows",//服务端返回数据键值 就是说记录放的键值是rows，分页时使用总记录数的键值为total
@@ -118,14 +96,14 @@
             showRefresh: true,//刷新按钮
             showColumns: true,//列选择按钮
             showToggle:true,     //是否显示详细视图和列表视图的切换按钮
-            iconSize: 'outline',
-            icons: {
+            /* iconSize: 'outline',
+           icons: {
                 refresh: 'glyphicon-repeat',
                 toggle: 'glyphicon-list-alt',
                 columns: 'glyphicon-list'
-            },
+            },*/
             buttonsAlign: "left",//按钮对齐方式
-          //  toolbar: "#toolbar",//指定工具栏
+            toolbar: "#toolbar",//指定工具栏
             toolbarAlign: "left",//工具栏对齐方式
             columns: [{
                 checkbox: true,
@@ -165,9 +143,7 @@
                 valign: 'middle',
                 sortable: true,
                 formatter: actionFormatter
-
             }, ],
-
             onClickRow: function(row, $element) {
                 //$element是当前tr的jquery对象
                 $element.css("background-color", "#eee");
@@ -175,25 +151,19 @@
             rowStyle: function (row, index) {
                 if (index % 2 === 0) {
                     return {
-                        classes: 'success'
+                        classes: 'info'
                     };
                 }
                 else if (index % 2=== 1) {
                     return {
-
                         /*  classes: 'success'*/
                     };
                 }
-
-
                 return {};
             }
-
     });
-
-
     }
-            )
+    )
 
     function tableHeight() {
         return $(window).height() - 50;
@@ -237,6 +207,5 @@
 <script src="/static/js/jquery-3.2.1.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrap-table.js"></script>
-<!-- put your locale files after bootstrap-table.js -->
 <!--<script src="/static/js/bootstrap-table-zh-CN.js"></script>-->
 </html>

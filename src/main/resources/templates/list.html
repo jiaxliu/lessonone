@@ -66,6 +66,7 @@
 </body>
 
 <script type="text/javascript">
+
     $(function() {
         //根据窗口调整表格高度
          $(window).resize(function() {
@@ -191,9 +192,11 @@
     window.actionEvents = {
         'click .mod': function(e, value, row, index) {
             //修改操作
+            row.id
         },
         'click .delete' : function(e, value, row, index) {
             //删除操作
+
         }
     }
     function emailFormatter() {}
